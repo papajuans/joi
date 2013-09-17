@@ -223,6 +223,22 @@ describe('Types', function () {
                 expect(err.message).to.include('the value of arr must be an integer');
                 done();
             });
+
+            it('should validate array of types defined with valids (Array)', function (done) {
+
+                var schema = {
+                    arr: Joi.types.Array().includes(S().valid('a'))
+                };
+
+                var input = { arr: ['a', 'b'] };
+                var err = Joi.validate(input, schema);
+
+                expect(err).to.exist;
+                done();
+
+            });
+
+
         });
     });
 });
